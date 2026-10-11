@@ -153,12 +153,6 @@ footer a{color:var(--muted)}
     <h2>Settings <button type="button" class="ghost" id="closeSettings">Done</button></h2>
 
     <div class="field">
-      <label for="apiKey">Google Maps Platform API key</label>
-      <input id="apiKey" type="password" autocomplete="off" placeholder="AIza…">
-      <div class="hint">Enable the Weather API in Google Cloud and restrict the key to this site's URL. Stored only in this browser. Leave blank to keep the sample data.</div>
-    </div>
-
-    <div class="field">
       <label for="preset">Location</label>
       <select id="preset"></select>
     </div>
@@ -198,15 +192,20 @@ footer a{color:var(--muted)}
     {name:"London, UK", lat:51.5074, lon:-0.1278},
     {name:"Custom", lat:null, lon:null}
   ];
-  var DEFAULTS = {key:"", name:PRESETS[0].name, lat:PRESETS[0].lat, lon:PRESETS[0].lon, units:"IMPERIAL"};
+  // Built-in Google Maps Platform key. In Google Cloud it is restricted to this site's address
+  // and to the Weather API only, and the project has a daily request cap.
+  var BUILT_IN_KEY = "PASTE_KEY_HERE";
+  var DEFAULTS = {name:PRESETS[0].name, lat:PRESETS[0].lat, lon:PRESETS[0].lon, units:"IMPERIAL"};
   var state = load();
   var $ = function(id){ return document.getElementById(id); };
 
   function load(){
-    try{ var s = JSON.parse(localStorage.getItem("nextcast.settings")||"null"); if(s && typeof s==="object") return Object.assign({}, DEFAULTS, s); }catch(e){}
-    return Object.assign({}, DEFAULTS);
+    var out = Object.assign({}, DEFAULTS);
+    try{ var s = JSON.parse(localStorage.getItem("nextcast.settings")||"null"); if(s && typeof s==="object") Object.assign(out, s); }catch(e){}
+    out.key = /^AIza/.test(BUILT_IN_KEY) ? BUILT_IN_KEY : "";
+    return out;
   }
-  function save(){ try{ localStorage.setItem("nextcast.settings", JSON.stringify(state)); }catch(e){} }
+  function save(){ try{ var c = Object.assign({}, state); delete c.key; localStorage.setItem("nextcast.settings", JSON.stringify(c)); }catch(e){} }
 
   // ---------- condition → icon ----------
   function iconFor(type, isDay){
@@ -330,8 +329,7 @@ footer a{color:var(--muted)}
     var b = $("banner");
     if (data.sample){
       b.className = "banner"; b.hidden = false;
-      b.innerHTML = "<div><b>Sample data.</b> Add a Google Maps Platform key in Settings to load live WeatherNext 3 forecasts for this spot.</div><button type='button' id='bannerBtn'>Add key</button>";
-      $("bannerBtn").addEventListener("click", openSettings);
+      b.innerHTML = "<div><b>Sample data.</b> Live forecasts aren't available right now.</div>";
     } else b.hidden = true;
 
     var h0 = data.hours[0] || {};
@@ -371,8 +369,7 @@ footer a{color:var(--muted)}
 
   function showError(msg){
     var b = $("banner"); b.className = "banner err"; b.hidden = false;
-    b.innerHTML = "<div><b>Couldn't load the forecast.</b> "+escapeHtml(msg)+"</div><button type='button' id='bannerBtn'>Settings</button>";
-    $("bannerBtn").addEventListener("click", openSettings);
+    b.innerHTML = "<div><b>Couldn't load the forecast.</b> "+escapeHtml(msg)+" Showing sample data instead.</div>";
   }
   function escapeHtml(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
 
@@ -387,7 +384,6 @@ footer a{color:var(--muted)}
 
   // ---------- settings ----------
   function fillSettings(){
-    $("apiKey").value = state.key||"";
     var sel = $("preset"); sel.innerHTML = PRESETS.map(function(p,i){ return '<option value="'+i+'">'+p.name+'</option>'; }).join("");
     var idx = PRESETS.findIndex(function(p){ return p.lat===state.lat && p.lon===state.lon; });
     sel.value = idx>=0 ? idx : PRESETS.length-1;
@@ -395,7 +391,7 @@ footer a{color:var(--muted)}
     setUnits(state.units);
   }
   function setUnits(u){ state.units = u; $("uF").setAttribute("aria-pressed", u==="IMPERIAL"); $("uC").setAttribute("aria-pressed", u==="METRIC"); }
-  function openSettings(){ fillSettings(); $("scrim").hidden = false; $("apiKey").focus(); }
+  function openSettings(){ fillSettings(); $("scrim").hidden = false; $("preset").focus(); }
   function closeSettings(){ $("scrim").hidden = true; }
 
   $("openSettings").addEventListener("click", openSettings);
@@ -417,7 +413,6 @@ footer a{color:var(--muted)}
   });
   $("settings").addEventListener("submit", function(e){
     e.preventDefault();
-    state.key = $("apiKey").value.trim();
     var la = parseFloat($("lat").value), lo = parseFloat($("lon").value);
     if(!isNaN(la) && !isNaN(lo)){ state.lat = la; state.lon = lo; }
     state.name = $("name").value.trim() || (state.lat.toFixed(2)+", "+state.lon.toFixed(2));
