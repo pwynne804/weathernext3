@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0f1724">
+<title>Nextcast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one phone-width column, a "now" panel, a horizontal hourly strip, a stacked daily list. */
+:root{
+  --bg:#eef2f7; --panel:#ffffff; --panel-2:#e3e9f1; --fg:#121a26; --muted:#5b6778; --line:#d3dbe6;
+  --accent:#d9731f; --accent-fg:#ffffff; --cool:#2f6fcf; --rain:#2f6fcf; --warn:#b4541a;
+  --display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",system-ui,sans-serif;
+  --radius:18px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f1724; --panel:#17212f; --panel-2:#1f2c3d; --fg:#eef2f7; --muted:#9aa8ba; --line:#2a3748;
+  --accent:#f0954a; --accent-fg:#1a1006; --cool:#6ea3f0; --rain:#6ea3f0; --warn:#f0954a; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0f1724; --panel:#17212f; --panel-2:#1f2c3d; --fg:#eef2f7; --muted:#9aa8ba; --line:#2a3748;
+  --accent:#f0954a; --accent-fg:#1a1006; --cool:#6ea3f0; --rain:#6ea3f0; --warn:#f0954a; color-scheme:dark }
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.4;-webkit-font-smoothing:antialiased}
+.app{max-width:440px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 12px) 16px calc(env(safe-area-inset-bottom,0px) + 28px);display:flex;flex-direction:column;gap:16px;min-height:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+
+header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.loc{min-width:0}
+.eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--display);font-size:24px;font-weight:700;margin:0;line-height:1.1;text-wrap:balance;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iconbtn{width:40px;height:40px;border-radius:50%;background:var(--panel);display:grid;place-items:center;flex:none;border:1px solid var(--line)}
+.iconbtn svg{width:20px;height:20px}
+
+.banner{background:var(--panel-2);border:1px dashed var(--line);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:flex-start}
+.banner b{color:var(--fg)}
+.banner button{color:var(--accent);font-weight:600;white-space:nowrap}
+.banner.err{border-style:solid;border-color:var(--warn);color:var(--fg)}
+
+.now{background:var(--panel);border-radius:var(--radius);padding:20px;display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:center}
+.now .temp{font-family:var(--display);font-size:72px;font-weight:600;line-height:1;letter-spacing:-.03em}
+.now .temp sup{font-size:28px;font-weight:400;vertical-align:top;top:.35em;position:relative;color:var(--muted)}
+.now .cond{font-size:17px;font-weight:600;margin-top:4px}
+.now .sub{color:var(--muted);font-size:13px}
+.now .ic{width:84px;height:84px;grid-row:1/3}
+.now .ic svg{width:100%;height:100%}
+.stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;border-top:1px solid var(--line);padding-top:12px}
+.stat .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.stat .v{font-weight:600;font-size:15px}
+
+section h2{font-family:var(--display);font-size:15px;font-weight:600;margin:0 0 8px;display:flex;justify-content:space-between;align-items:baseline}
+section h2 span{font-family:var(--body);font-weight:500;font-size:12px;color:var(--muted)}
+
+.hours{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;margin:0 -2px;scroll-snap-type:x proximity;scrollbar-width:none}
+.hours::-webkit-scrollbar{display:none}
+.hour{flex:0 0 58px;background:var(--panel);border-radius:14px;padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:6px;scroll-snap-align:start;text-align:center}
+.hour.now{outline:2px solid var(--accent)}
+.hour .t{font-size:12px;color:var(--muted);font-weight:500}
+.hour svg{width:26px;height:26px}
+.hour .d{font-weight:600;font-size:15px}
+.hour .p{font-size:11px;color:var(--rain);font-weight:600;min-height:14px}
+
+.days{background:var(--panel);border-radius:var(--radius);padding:6px 16px;display:flex;flex-direction:column}
+.day{display:grid;grid-template-columns:52px 28px 40px 1fr;gap:10px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.day:first-child{border-top:0}
+.day .n{font-weight:600}
+.day svg{width:26px;height:26px}
+.day .p{font-size:12px;color:var(--rain);font-weight:600;text-align:right}
+.range{display:grid;grid-template-columns:32px 1fr 32px;gap:8px;align-items:center;font-weight:600}
+.range .lo{color:var(--muted);text-align:right}
+.bar{height:6px;border-radius:3px;background:var(--panel-2);position:relative;overflow:hidden}
+.bar i{position:absolute;top:0;bottom:0;border-radius:3px;background:linear-gradient(90deg,var(--cool),var(--accent))}
+
+footer{font-size:12px;color:var(--muted);text-align:center;line-height:1.5}
+footer a{color:var(--muted)}
+
+/* settings sheet */
+.scrim{position:fixed;inset:0;background:rgba(5,10,18,.55);display:flex;align-items:flex-end;justify-content:center;z-index:10}
+.sheet{width:100%;max-width:440px;max-height:92%;overflow:auto;background:var(--panel);border-radius:22px 22px 0 0;padding:16px 20px calc(env(safe-area-inset-bottom,0px) + 24px);display:flex;flex-direction:column;gap:16px}
+.sheet h2{font-family:var(--display);font-size:20px;margin:0;display:flex;justify-content:space-between;align-items:center}
+.sheet .grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select{font:inherit;font-size:16px;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);width:100%;min-width:0}
+.field .hint{font-size:12px;color:var(--muted)}
+.field .hint a{color:var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg{display:flex;background:var(--bg);border-radius:10px;padding:3px;border:1px solid var(--line)}
+.seg button{flex:1;padding:8px;border-radius:8px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.primary{background:var(--accent);color:var(--accent-fg);font-weight:700;padding:14px;border-radius:12px;text-align:center}
+.ghost{color:var(--accent);font-weight:600;padding:8px;text-align:center}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:up .25s ease-out}@keyframes up{from{transform:translateY(40px);opacity:0}}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gSun" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#ffd166"/><stop offset="1" stop-color="#f0954a"/></linearGradient>
+    <symbol id="i-sun" viewBox="0 0 48 48"><circle cx="24" cy="24" r="10" fill="url(#gSun)"/><g stroke="#f0a84a" stroke-width="3" stroke-linecap="round"><path d="M24 4v6M24 38v6M4 24h6M38 24h6M9.9 9.9l4.2 4.2M33.9 33.9l4.2 4.2M9.9 38.1l4.2-4.2M33.9 14.1l4.2-4.2"/></g></symbol>
+    <symbol id="i-moon" viewBox="0 0 48 48"><path d="M30 6a16 16 0 1 0 12 26A13 13 0 0 1 30 6z" fill="#cdd6e3"/></symbol>
+    <symbol id="i-partly" viewBox="0 0 48 48"><circle cx="18" cy="17" r="8" fill="url(#gSun)"/><path d="M16 38h18a8 8 0 0 0 1-15.9A11 11 0 0 0 14 25a6.5 6.5 0 0 0 2 13z" fill="#dbe3ee" stroke="#aeb9c9" stroke-width="1.5"/></symbol>
+    <symbol id="i-partlyn" viewBox="0 0 48 48"><path d="M22 6a9 9 0 1 0 7 15 7.5 7.5 0 0 1-7-15z" fill="#cdd6e3"/><path d="M16 40h18a8 8 0 0 0 1-15.9A11 11 0 0 0 14 27a6.5 6.5 0 0 0 2 13z" fill="#aeb9c9" stroke="#8c99ad" stroke-width="1.5"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 48 48"><path d="M14 36h20a8 8 0 0 0 1-15.9A11 11 0 0 0 13.6 23 6.5 6.5 0 0 0 14 36z" fill="#c3cddb" stroke="#97a4b7" stroke-width="1.5"/></symbol>
+    <symbol id="i-rain" viewBox="0 0 48 48"><path d="M14 30h20a8 8 0 0 0 1-15.9A11 11 0 0 0 13.6 17 6.5 6.5 0 0 0 14 30z" fill="#aab6c8" stroke="#8291a8" stroke-width="1.5"/><g stroke="#4f8ae0" stroke-width="3" stroke-linecap="round"><path d="M18 35l-2 6M26 35l-2 6M34 35l-2 6"/></g></symbol>
+    <symbol id="i-snow" viewBox="0 0 48 48"><path d="M14 30h20a8 8 0 0 0 1-15.9A11 11 0 0 0 13.6 17 6.5 6.5 0 0 0 14 30z" fill="#c3cddb" stroke="#97a4b7" stroke-width="1.5"/><g fill="#dbe8ff" stroke="#8fb0e0" stroke-width="1"><circle cx="18" cy="38" r="2.5"/><circle cx="26" cy="41" r="2.5"/><circle cx="34" cy="38" r="2.5"/></g></symbol>
+    <symbol id="i-storm" viewBox="0 0 48 48"><path d="M14 28h20a8 8 0 0 0 1-15.9A11 11 0 0 0 13.6 15 6.5 6.5 0 0 0 14 28z" fill="#8f9db2" stroke="#6b7a92" stroke-width="1.5"/><path d="M26 27l-7 10h6l-3 8 9-12h-6l3-6z" fill="#ffd166"/></symbol>
+    <symbol id="i-fog" viewBox="0 0 48 48"><path d="M14 26h20a8 8 0 0 0 1-15.9A11 11 0 0 0 13.6 13 6.5 6.5 0 0 0 14 26z" fill="#c3cddb" stroke="#97a4b7" stroke-width="1.5"/><g stroke="#97a4b7" stroke-width="3" stroke-linecap="round"><path d="M10 33h28M14 40h20"/></g></symbol>
+    <symbol id="i-wind" viewBox="0 0 48 48"><g fill="none" stroke="#97a4b7" stroke-width="3" stroke-linecap="round"><path d="M6 18h24a5 5 0 1 0-5-5M6 26h32a5 5 0 1 1-5 5M6 34h18a4 4 0 1 1-4 4"/></g></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 22s7-7.1 7-12a7 7 0 1 0-14 0c0 4.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  </defs>
+</svg>
+
+<div class="app" id="app">
+  <header>
+    <div class="loc">
+      <div class="eyebrow" id="eyebrow">WeatherNext 3</div>
+      <h1 id="locName">Loading…</h1>
+    </div>
+    <button class="iconbtn" id="openSettings" aria-label="Settings"><svg><use href="#i-gear"/></svg></button>
+  </header>
+
+  <div class="banner" id="banner" hidden></div>
+
+  <div class="now" id="now"></div>
+
+  <section>
+    <h2>Next 24 hours <span id="hourlyNote">hourly, 5 km</span></h2>
+    <div class="hours" id="hours"></div>
+  </section>
+
+  <section>
+    <h2>Next 7 days <span>daily high / low</span></h2>
+    <div class="days" id="days"></div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<div class="scrim" id="scrim" hidden>
+  <form class="sheet" id="settings">
+    <div class="grab"></div>
+    <h2>Settings <button type="button" class="ghost" id="closeSettings">Done</button></h2>
+
+    <div class="field">
+      <label for="apiKey">Google Maps Platform API key</label>
+      <input id="apiKey" type="password" autocomplete="off" placeholder="AIza…">
+      <div class="hint">Enable the Weather API in Google Cloud and restrict the key to this site's URL. Stored only in this browser. Leave blank to keep the sample data.</div>
+    </div>
+
+    <div class="field">
+      <label for="preset">Location</label>
+      <select id="preset"></select>
+    </div>
+    <div class="row">
+      <div class="field"><label for="lat">Latitude</label><input id="lat" type="number" step="0.0001" inputmode="decimal"></div>
+      <div class="field"><label for="lon">Longitude</label><input id="lon" type="number" step="0.0001" inputmode="decimal"></div>
+    </div>
+    <div class="field">
+      <label for="name">Display name</label>
+      <input id="name" type="text" placeholder="e.g. Home">
+    </div>
+    <button type="button" class="ghost" id="useGeo">Use my current location</button>
+
+    <div class="field">
+      <label>Units</label>
+      <div class="seg" role="group" aria-label="Units">
+        <button type="button" id="uF" aria-pressed="true">°F · mph</button>
+        <button type="button" id="uC" aria-pressed="false">°C · km/h</button>
+      </div>
+    </div>
+
+    <button type="submit" class="primary">Save and refresh</button>
+  </form>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var PRESETS = [
+    {name:"San Francisco, CA", lat:37.7749, lon:-122.4194},
+    {name:"New York, NY", lat:40.7128, lon:-74.0060},
+    {name:"Chicago, IL", lat:41.8781, lon:-87.6298},
+    {name:"Austin, TX", lat:30.2672, lon:-97.7431},
+    {name:"Seattle, WA", lat:47.6062, lon:-122.3321},
+    {name:"Denver, CO", lat:39.7392, lon:-104.9903},
+    {name:"Miami, FL", lat:25.7617, lon:-80.1918},
+    {name:"London, UK", lat:51.5074, lon:-0.1278},
+    {name:"Custom", lat:null, lon:null}
+  ];
+  var DEFAULTS = {key:"", name:PRESETS[0].name, lat:PRESETS[0].lat, lon:PRESETS[0].lon, units:"IMPERIAL"};
+  var state = load();
+  var $ = function(id){ return document.getElementById(id); };
+
+  function load(){
+    try{ var s = JSON.parse(localStorage.getItem("nextcast.settings")||"null"); if(s && typeof s==="object") return Object.assign({}, DEFAULTS, s); }catch(e){}
+    return Object.assign({}, DEFAULTS);
+  }
+  function save(){ try{ localStorage.setItem("nextcast.settings", JSON.stringify(state)); }catch(e){} }
+
+  // ---------- condition → icon ----------
+  function iconFor(type, isDay){
+    var t = String(type||"").toUpperCase();
+    if (/THUNDER/.test(t)) return "i-storm";
+    if (/SNOW|SLEET|HAIL|FLURR|ICE|FREEZ|BLIZZ/.test(t)) return "i-snow";
+    if (/RAIN|SHOWER|DRIZZLE/.test(t)) return "i-rain";
+    if (/FOG|HAZE|MIST|SMOKE/.test(t)) return "i-fog";
+    if (/WIND/.test(t)) return "i-wind";
+    if (/MOSTLY_CLOUDY|^CLOUDY|OVERCAST/.test(t)) return "i-cloud";
+    if (/PARTLY|MOSTLY_CLEAR/.test(t)) return isDay===false ? "i-partlyn" : "i-partly";
+    if (/CLEAR|SUNNY/.test(t)) return isDay===false ? "i-moon" : "i-sun";
+    return "i-cloud";
+  }
+  function svg(id){ return '<svg aria-hidden="true"><use href="#'+id+'"/></svg>'; }
+
+  // ---------- normalization ----------
+  // Turns the Google Weather API shapes (forecast/hours:lookup, forecast/days:lookup) into a flat model.
+  function normalizeHours(json){
+    var tz = json.timeZone && json.timeZone.id;
+    return (json.forecastHours||[]).map(function(h){
+      return {
+        time: new Date(h.interval.startTime),
+        tz: tz,
+        isDay: h.isDaytime,
+        type: h.weatherCondition && h.weatherCondition.type,
+        text: h.weatherCondition && h.weatherCondition.description && h.weatherCondition.description.text,
+        temp: num(h.temperature), feels: num(h.feelsLikeTemperature),
+        humidity: h.relativeHumidity, uv: h.uvIndex,
+        pop: h.precipitation && h.precipitation.probability && h.precipitation.probability.percent,
+        wind: h.wind && h.wind.speed && h.wind.speed.value,
+        windUnit: h.wind && h.wind.speed && h.wind.speed.unit,
+        windDir: h.wind && h.wind.direction && h.wind.direction.cardinal,
+        cloud: h.cloudCover
+      };
+    });
+  }
+  function normalizeDays(json){
+    var tz = json.timeZone && json.timeZone.id;
+    return (json.forecastDays||[]).map(function(d){
+      var day = d.daytimeForecast||{};
+      var dd = d.displayDate||{};
+      return {
+        date: new Date(Date.UTC(dd.year, (dd.month||1)-1, dd.day||1, 12)),
+        tz: tz,
+        type: day.weatherCondition && day.weatherCondition.type,
+        hi: num(d.maxTemperature), lo: num(d.minTemperature),
+        pop: day.precipitation && day.precipitation.probability && day.precipitation.probability.percent
+      };
+    });
+  }
+  function num(x){ return x && typeof x.degrees==="number" ? x.degrees : null; }
+
+  // ---------- sample data (shown until a key is set) ----------
+  function sampleData(){
+    var now = new Date(); now.setMinutes(0,0,0);
+    var hours = [], days = [];
+    var shape = ["CLEAR","CLEAR","MOSTLY_CLEAR","PARTLY_CLOUDY","PARTLY_CLOUDY","MOSTLY_CLOUDY","CLOUDY","LIGHT_RAIN_SHOWERS","RAIN","RAIN","SCATTERED_SHOWERS","MOSTLY_CLOUDY","PARTLY_CLOUDY","CLEAR"];
+    for (var i=0;i<24;i++){
+      var t = new Date(now.getTime()+i*3600e3); var h = t.getHours();
+      var isDay = h>=6 && h<19;
+      var base = state.units==="IMPERIAL" ? 58 : 14, amp = state.units==="IMPERIAL" ? 11 : 6;
+      var temp = Math.round(base + amp*Math.sin((h-9)/24*2*Math.PI));
+      var type = shape[Math.floor(i/24*shape.length)];
+      var pop = /RAIN|SHOWER/.test(type) ? 40+Math.round(30*Math.random()) : (/CLOUDY/.test(type)?15:0);
+      hours.push({time:t, isDay:isDay, type:type, text:pretty(type), temp:temp, feels:temp-1, humidity:60+Math.round(20*Math.sin(i/5)), uv:isDay?Math.max(0,Math.round(6*Math.sin((h-6)/13*Math.PI))):0, pop:pop, wind:8+Math.round(6*Math.sin(i/4)), windUnit:state.units==="IMPERIAL"?"MILES_PER_HOUR":"KILOMETERS_PER_HOUR", windDir:"WEST", cloud:30});
+    }
+    var dtypes = ["PARTLY_CLOUDY","RAIN","SCATTERED_SHOWERS","MOSTLY_CLOUDY","CLEAR","CLEAR","PARTLY_CLOUDY"];
+    for (var d=0; d<7; d++){
+      var dt = new Date(now.getTime()+d*86400e3);
+      var hi = state.units==="IMPERIAL" ? 66+Math.round(6*Math.sin(d)) : 19+Math.round(3*Math.sin(d));
+      var lo = hi - (state.units==="IMPERIAL"?14:8);
+      days.push({date:dt, type:dtypes[d], hi:hi, lo:lo, pop:/RAIN|SHOWER/.test(dtypes[d])?55:10});
+    }
+    return {hours:hours, days:days, sample:true, fetched:new Date()};
+  }
+  function pretty(type){ return String(type||"").toLowerCase().replace(/_/g," ").replace(/^\w/, function(c){return c.toUpperCase();}); }
+
+  // ---------- fetch ----------
+  function endpoint(kind, extra){
+    var u = "https://weather.googleapis.com/v1/forecast/"+kind+":lookup?key="+encodeURIComponent(state.key)
+      +"&location.latitude="+encodeURIComponent(state.lat)+"&location.longitude="+encodeURIComponent(state.lon)
+      +"&unitsSystem="+state.units+extra;
+    return u;
+  }
+  function getJSON(url){
+    return fetch(url).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(j){
+        if(!r.ok){ var m = (j.error && j.error.message) || ("HTTP "+r.status); throw new Error(m); }
+        return j;
+      });
+    });
+  }
+  function fetchLive(){
+    return Promise.all([
+      getJSON(endpoint("hours","&hours=24&pageSize=24")),
+      getJSON(endpoint("days","&days=7&pageSize=7"))
+    ]).then(function(res){
+      return {hours:normalizeHours(res[0]), days:normalizeDays(res[1]), sample:false, fetched:new Date()};
+    });
+  }
+
+  // ---------- formatting ----------
+  var degSym = function(){ return state.units==="IMPERIAL" ? "°F" : "°C"; };
+  function fmtHour(d, tz){
+    try{ return new Intl.DateTimeFormat(undefined,{hour:"numeric", timeZone:tz||undefined}).format(d).replace(" ",""); }catch(e){ return d.getHours()+":00"; }
+  }
+  function fmtDay(d, i, tz){
+    if(i===0) return "Today";
+    try{ return new Intl.DateTimeFormat(undefined,{weekday:"short", timeZone:tz||undefined}).format(d); }catch(e){ return d.toDateString().slice(0,3); }
+  }
+  function fmtTime(d){ try{ return new Intl.DateTimeFormat(undefined,{hour:"numeric",minute:"2-digit"}).format(d);}catch(e){return d.toLocaleTimeString();} }
+  function windUnit(u){ return u==="MILES_PER_HOUR"?"mph":u==="KILOMETERS_PER_HOUR"?"km/h":u==="METERS_PER_SECOND"?"m/s":""; }
+  function r(x){ return x==null||isNaN(x) ? "–" : Math.round(x); }
+
+  // ---------- render ----------
+  function render(data){
+    $("locName").textContent = state.name || (state.lat+", "+state.lon);
+    $("eyebrow").textContent = data.sample ? "WeatherNext 3 · sample" : "WeatherNext 3";
+
+    var b = $("banner");
+    if (data.sample){
+      b.className = "banner"; b.hidden = false;
+      b.innerHTML = "<div><b>Sample data.</b> Add a Google Maps Platform key in Settings to load live WeatherNext 3 forecasts for this spot.</div><button type='button' id='bannerBtn'>Add key</button>";
+      $("bannerBtn").addEventListener("click", openSettings);
+    } else b.hidden = true;
+
+    var h0 = data.hours[0] || {};
+    var today = data.days[0] || {};
+    $("now").innerHTML =
+      '<div><div class="temp num">'+r(h0.temp)+'<sup>'+degSym()+'</sup></div>'+
+      '<div class="cond">'+(h0.text||pretty(h0.type)||"—")+'</div>'+
+      '<div class="sub num">Feels like '+r(h0.feels)+'° · H '+r(today.hi)+'° L '+r(today.lo)+'°</div></div>'+
+      '<div class="ic">'+svg(iconFor(h0.type,h0.isDay))+'</div>'+
+      '<div class="stats">'+
+        '<div class="stat"><div class="k">Rain</div><div class="v num">'+r(h0.pop)+'%</div></div>'+
+        '<div class="stat"><div class="k">Wind</div><div class="v num">'+r(h0.wind)+' '+windUnit(h0.windUnit)+'</div></div>'+
+        '<div class="stat"><div class="k">Humidity</div><div class="v num">'+r(h0.humidity)+'%</div></div>'+
+      '</div>';
+
+    $("hours").innerHTML = data.hours.map(function(h,i){
+      return '<div class="hour'+(i===0?' now':'')+'">'+
+        '<div class="t">'+(i===0?"Now":fmtHour(h.time,h.tz))+'</div>'+svg(iconFor(h.type,h.isDay))+
+        '<div class="d num">'+r(h.temp)+'°</div>'+
+        '<div class="p num">'+(h.pop>=10?r(h.pop)+'%':'')+'</div></div>';
+    }).join("");
+
+    var all = data.days.filter(function(d){return d.hi!=null&&d.lo!=null;});
+    var min = Math.min.apply(null, all.map(function(d){return d.lo;}));
+    var max = Math.max.apply(null, all.map(function(d){return d.hi;}));
+    var span = Math.max(1, max-min);
+    $("days").innerHTML = data.days.map(function(d,i){
+      var l = ((d.lo-min)/span*100).toFixed(1), w = ((d.hi-d.lo)/span*100).toFixed(1);
+      return '<div class="day"><div class="n">'+fmtDay(d.date,i,d.tz)+'</div>'+svg(iconFor(d.type,true))+
+        '<div class="p num">'+(d.pop>=10?r(d.pop)+'%':'')+'</div>'+
+        '<div class="range num"><span class="lo">'+r(d.lo)+'°</span><div class="bar"><i style="left:'+l+'%;width:'+w+'%"></i></div><span>'+r(d.hi)+'°</span></div></div>';
+    }).join("");
+
+    $("foot").innerHTML = (data.sample ? "Sample forecast" : "Google Weather API, powered by WeatherNext 3")+
+      " · updated "+fmtTime(data.fetched)+"<br>Temperature and moisture at ~5 km; wind and upper air are coarser.";
+  }
+
+  function showError(msg){
+    var b = $("banner"); b.className = "banner err"; b.hidden = false;
+    b.innerHTML = "<div><b>Couldn't load the forecast.</b> "+escapeHtml(msg)+"</div><button type='button' id='bannerBtn'>Settings</button>";
+    $("bannerBtn").addEventListener("click", openSettings);
+  }
+  function escapeHtml(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+  function refresh(){
+    if (!state.key){ render(sampleData()); return; }
+    $("eyebrow").textContent = "Loading…";
+    fetchLive().then(render).catch(function(e){
+      render(sampleData());
+      showError(e.message || String(e));
+    });
+  }
+
+  // ---------- settings ----------
+  function fillSettings(){
+    $("apiKey").value = state.key||"";
+    var sel = $("preset"); sel.innerHTML = PRESETS.map(function(p,i){ return '<option value="'+i+'">'+p.name+'</option>'; }).join("");
+    var idx = PRESETS.findIndex(function(p){ return p.lat===state.lat && p.lon===state.lon; });
+    sel.value = idx>=0 ? idx : PRESETS.length-1;
+    $("lat").value = state.lat; $("lon").value = state.lon; $("name").value = state.name||"";
+    setUnits(state.units);
+  }
+  function setUnits(u){ state.units = u; $("uF").setAttribute("aria-pressed", u==="IMPERIAL"); $("uC").setAttribute("aria-pressed", u==="METRIC"); }
+  function openSettings(){ fillSettings(); $("scrim").hidden = false; $("apiKey").focus(); }
+  function closeSettings(){ $("scrim").hidden = true; }
+
+  $("openSettings").addEventListener("click", openSettings);
+  $("closeSettings").addEventListener("click", closeSettings);
+  $("scrim").addEventListener("click", function(e){ if(e.target===$("scrim")) closeSettings(); });
+  $("preset").addEventListener("change", function(){
+    var p = PRESETS[+this.value]; if(p && p.lat!=null){ $("lat").value=p.lat; $("lon").value=p.lon; $("name").value=p.name; }
+  });
+  $("uF").addEventListener("click", function(){ setUnits("IMPERIAL"); });
+  $("uC").addEventListener("click", function(){ setUnits("METRIC"); });
+  $("useGeo").addEventListener("click", function(){
+    if(!navigator.geolocation){ this.textContent="Location isn't available in this browser"; return; }
+    var btn=this; btn.textContent="Locating…";
+    navigator.geolocation.getCurrentPosition(function(pos){
+      $("lat").value = pos.coords.latitude.toFixed(4); $("lon").value = pos.coords.longitude.toFixed(4);
+      $("preset").value = PRESETS.length-1; if(!$("name").value) $("name").value="My location";
+      btn.textContent="Use my current location";
+    }, function(){ btn.textContent="Location permission was denied"; }, {timeout:10000});
+  });
+  $("settings").addEventListener("submit", function(e){
+    e.preventDefault();
+    state.key = $("apiKey").value.trim();
+    var la = parseFloat($("lat").value), lo = parseFloat($("lon").value);
+    if(!isNaN(la) && !isNaN(lo)){ state.lat = la; state.lon = lo; }
+    state.name = $("name").value.trim() || (state.lat.toFixed(2)+", "+state.lon.toFixed(2));
+    save(); closeSettings(); refresh();
+  });
+
+  refresh();
+  setInterval(function(){ if(state.key && document.visibilityState==="visible") refresh(); }, 15*60*1000);
+})();
+</script>
+</body>
+</html>
