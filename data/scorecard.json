@@ -7,7 +7,7 @@
   "unit": "F"
  },
  "forecastDays": 1,
- "observedDays": 0,
+ "observedDays": 2,
  "recent": [],
  "sources": {
   "google": {
@@ -159,5 +159,5 @@
    ]
   }
  },
- "updated": "2026-10-13T17:01:18+00:00"
+ "updated": "2026-10-13T17:18:23+00:00"
 }

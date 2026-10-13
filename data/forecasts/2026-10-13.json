@@ -1,5 +1,63 @@
 {
- "issued": "2026-10-13T17:01:17+00:00",
+ "google": {
+  "2026-10-13": {
+   "hi": 82.8,
+   "lo": 56.5,
+   "popDay": 10,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-14": {
+   "hi": 88.1,
+   "lo": 61.5,
+   "popDay": 0,
+   "popNight": 5,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-15": {
+   "hi": 69.8,
+   "lo": 62,
+   "popDay": 15,
+   "popNight": 15,
+   "qpfIn": 0.0024000000000000002,
+   "text": "Cloudy"
+  },
+  "2026-10-16": {
+   "hi": 83.7,
+   "lo": 53.9,
+   "popDay": 0,
+   "popNight": 45,
+   "qpfIn": 0.1744,
+   "text": "Sunny"
+  },
+  "2026-10-17": {
+   "hi": 59.1,
+   "lo": 36.4,
+   "popDay": 45,
+   "popNight": 0,
+   "qpfIn": 0.0402,
+   "text": "Sunny"
+  },
+  "2026-10-18": {
+   "hi": 57.8,
+   "lo": 35.6,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-19": {
+   "hi": 66.3,
+   "lo": 36.9,
+   "popDay": 5,
+   "popNight": 10,
+   "qpfIn": 0,
+   "text": "Mostly sunny"
+  }
+ },
+ "issued": "2026-10-13T17:18:16+00:00",
  "issuedLocalDate": "2026-10-13",
  "lat": 37.513,
  "lon": -77.566,
