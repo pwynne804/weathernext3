@@ -1,0 +1,61 @@
+{
+ "issued": "2026-10-13T17:01:17+00:00",
+ "issuedLocalDate": "2026-10-13",
+ "lat": 37.513,
+ "lon": -77.566,
+ "nws": {
+  "2026-10-13": {
+   "hi": 84,
+   "lo": 64,
+   "popDay": 0,
+   "popNight": 4,
+   "text": "Sunny"
+  },
+  "2026-10-14": {
+   "hi": 90,
+   "lo": 67,
+   "popDay": 2,
+   "popNight": 7,
+   "text": "Sunny"
+  },
+  "2026-10-15": {
+   "hi": 75,
+   "lo": 62,
+   "popDay": 29,
+   "popNight": 29,
+   "text": "Chance Rain Showers"
+  },
+  "2026-10-16": {
+   "hi": 84,
+   "lo": 49,
+   "popDay": 24,
+   "popNight": 24,
+   "text": "Slight Chance Rain Showers"
+  },
+  "2026-10-17": {
+   "hi": 59,
+   "lo": 40,
+   "popDay": 5,
+   "popNight": 1,
+   "text": "Sunny"
+  },
+  "2026-10-18": {
+   "hi": 62,
+   "lo": 43,
+   "popDay": 2,
+   "popNight": 2,
+   "text": "Sunny"
+  },
+  "2026-10-19": {
+   "hi": 68,
+   "lo": 48,
+   "popDay": 1,
+   "popNight": 2,
+   "text": "Sunny"
+  }
+ },
+ "nwsMeta": {
+  "grid": "AKQ/41,75",
+  "updated": "2026-10-13T07:56:06+00:00"
+ }
+}
