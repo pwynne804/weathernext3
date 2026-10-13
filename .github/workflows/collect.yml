@@ -1,0 +1,43 @@
+name: Collect forecasts and observations
+
+on:
+  schedule:
+    # 12:15 UTC = 8:15 EDT / 7:15 EST. Yesterday's 07:00-07:00 window is complete by then.
+    - cron: "15 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect
+        env:
+          GOOGLE_WEATHER_KEY: ${{ secrets.GOOGLE_WEATHER_KEY }}
+          AMBIENT_API_KEY: ${{ secrets.AMBIENT_API_KEY }}
+          AMBIENT_APP_KEY: ${{ secrets.AMBIENT_APP_KEY }}
+          AMBIENT_MAC: ${{ secrets.AMBIENT_MAC }}
+        run: python3 scripts/collect.py
+
+      - name: Score
+        run: python3 scripts/score.py
+
+      - name: Commit data
+        run: |
+          git config user.name "nextcast-bot"
+          git config user.email "nextcast-bot@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "nothing new"
+          else
+            git commit -m "Data for $(date -u +%F)"
+            git push
+          fi
