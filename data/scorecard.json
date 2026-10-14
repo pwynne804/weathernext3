@@ -6,21 +6,21 @@
   "rain": "rain >= 0.01 in between 07:00 and 07:00 next day",
   "unit": "F"
  },
- "forecastDays": 1,
- "observedDays": 2,
+ "forecastDays": 2,
+ "observedDays": 3,
  "recent": [],
  "sources": {
   "google": {
    "byLead": [
     {
-     "biasHigh": null,
-     "biasLow": null,
-     "brier": null,
+     "biasHigh": -2.5,
+     "biasLow": -9.5,
+     "brier": 0.01,
      "lead": 0,
-     "maeHigh": null,
-     "maeLow": null,
-     "n": 0,
-     "rainHit": null
+     "maeHigh": 2.5,
+     "maeLow": 9.5,
+     "n": 1,
+     "rainHit": 1.0
     },
     {
      "biasHigh": null,
@@ -87,14 +87,14 @@
   "nws": {
    "byLead": [
     {
-     "biasHigh": null,
-     "biasLow": null,
-     "brier": null,
+     "biasHigh": -1.3,
+     "biasLow": -2.0,
+     "brier": 0.0,
      "lead": 0,
-     "maeHigh": null,
-     "maeLow": null,
-     "n": 0,
-     "rainHit": null
+     "maeHigh": 1.3,
+     "maeLow": 2.0,
+     "n": 1,
+     "rainHit": 1.0
     },
     {
      "biasHigh": null,
@@ -159,5 +159,5 @@
    ]
   }
  },
- "updated": "2026-10-13T17:18:23+00:00"
+ "updated": "2026-10-14T17:08:05+00:00"
 }
