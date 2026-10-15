@@ -6,31 +6,50 @@
   "rain": "rain >= 0.01 in between 07:00 and 07:00 next day",
   "unit": "F"
  },
- "forecastDays": 2,
- "observedDays": 3,
- "recent": [],
+ "forecastDays": 3,
+ "observedDays": 4,
+ "recent": [
+  {
+   "date": "2026-10-14",
+   "google": {
+    "hi": 88.1,
+    "lo": 61.5,
+    "popDay": 0
+   },
+   "nws": {
+    "hi": 90,
+    "lo": 67,
+    "popDay": 2
+   },
+   "obs": {
+    "hi": 91.6,
+    "lo": 73,
+    "rainIn": 0.0
+   }
+  }
+ ],
  "sources": {
   "google": {
    "byLead": [
     {
-     "biasHigh": -2.5,
+     "biasHigh": -2.45,
      "biasLow": -9.5,
-     "brier": 0.01,
+     "brier": 0.005,
      "lead": 0,
-     "maeHigh": 2.5,
+     "maeHigh": 2.45,
      "maeLow": 9.5,
-     "n": 1,
+     "n": 2,
      "rainHit": 1.0
     },
     {
-     "biasHigh": null,
-     "biasLow": null,
-     "brier": null,
+     "biasHigh": -3.5,
+     "biasLow": -11.5,
+     "brier": 0.0,
      "lead": 1,
-     "maeHigh": null,
-     "maeLow": null,
-     "n": 0,
-     "rainHit": null
+     "maeHigh": 3.5,
+     "maeLow": 11.5,
+     "n": 1,
+     "rainHit": 1.0
     },
     {
      "biasHigh": null,
@@ -87,24 +106,24 @@
   "nws": {
    "byLead": [
     {
-     "biasHigh": -1.3,
-     "biasLow": -2.0,
+     "biasHigh": -1.45,
+     "biasLow": -4.0,
      "brier": 0.0,
      "lead": 0,
-     "maeHigh": 1.3,
-     "maeLow": 2.0,
-     "n": 1,
+     "maeHigh": 1.45,
+     "maeLow": 4.0,
+     "n": 2,
      "rainHit": 1.0
     },
     {
-     "biasHigh": null,
-     "biasLow": null,
-     "brier": null,
+     "biasHigh": -1.6,
+     "biasLow": -6.0,
+     "brier": 0.0,
      "lead": 1,
-     "maeHigh": null,
-     "maeLow": null,
-     "n": 0,
-     "rainHit": null
+     "maeHigh": 1.6,
+     "maeLow": 6.0,
+     "n": 1,
+     "rainHit": 1.0
     },
     {
      "biasHigh": null,
@@ -159,5 +178,5 @@
    ]
   }
  },
- "updated": "2026-10-14T17:08:05+00:00"
+ "updated": "2026-10-15T16:58:22+00:00"
 }
