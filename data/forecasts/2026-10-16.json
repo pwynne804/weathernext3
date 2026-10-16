@@ -1,0 +1,119 @@
+{
+ "google": {
+  "2026-10-16": {
+   "hi": 84.5,
+   "lo": 54.9,
+   "popDay": 10,
+   "popNight": 75,
+   "qpfIn": 0.589,
+   "text": "Light rain"
+  },
+  "2026-10-17": {
+   "hi": 54.4,
+   "lo": 39,
+   "popDay": 55,
+   "popNight": 0,
+   "qpfIn": 0.1886,
+   "text": "Light rain"
+  },
+  "2026-10-18": {
+   "hi": 60.1,
+   "lo": 38.1,
+   "popDay": 0,
+   "popNight": 10,
+   "qpfIn": 0,
+   "text": "Mostly sunny"
+  },
+  "2026-10-19": {
+   "hi": 64.4,
+   "lo": 37.8,
+   "popDay": 10,
+   "popNight": 5,
+   "qpfIn": 0.0016,
+   "text": "Partly sunny"
+  },
+  "2026-10-20": {
+   "hi": 71.3,
+   "lo": 42.9,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-21": {
+   "hi": 68.5,
+   "lo": 46.4,
+   "popDay": 15,
+   "popNight": 15,
+   "qpfIn": 0.0169,
+   "text": "Mostly cloudy"
+  },
+  "2026-10-22": {
+   "hi": 67.3,
+   "lo": 45.9,
+   "popDay": 15,
+   "popNight": 15,
+   "qpfIn": 0.0062,
+   "text": "Mostly cloudy"
+  }
+ },
+ "issued": "2026-10-16T16:36:06+00:00",
+ "issuedLocalDate": "2026-10-16",
+ "lat": 37.513,
+ "lon": -77.566,
+ "nws": {
+  "2026-10-16": {
+   "hi": 86,
+   "lo": 51,
+   "popDay": 1,
+   "popNight": 91,
+   "text": "Mostly Sunny"
+  },
+  "2026-10-17": {
+   "hi": 54,
+   "lo": 39,
+   "popDay": 86,
+   "popNight": 1,
+   "text": "Light Rain"
+  },
+  "2026-10-18": {
+   "hi": 57,
+   "lo": 43,
+   "popDay": 3,
+   "popNight": 20,
+   "text": "Sunny"
+  },
+  "2026-10-19": {
+   "hi": 59,
+   "lo": 48,
+   "popDay": 25,
+   "popNight": 30,
+   "text": "Chance Light Rain"
+  },
+  "2026-10-20": {
+   "hi": 64,
+   "lo": 51,
+   "popDay": 28,
+   "popNight": 25,
+   "text": "Chance Rain Showers"
+  },
+  "2026-10-21": {
+   "hi": 64,
+   "lo": 51,
+   "popDay": 27,
+   "popNight": 31,
+   "text": "Chance Rain Showers"
+  },
+  "2026-10-22": {
+   "hi": 63,
+   "lo": 51,
+   "popDay": 24,
+   "popNight": 17,
+   "text": "Slight Chance Rain Showers"
+  }
+ },
+ "nwsMeta": {
+  "grid": "AKQ/41,75",
+  "updated": "2026-10-16T15:49:25+00:00"
+ }
+}

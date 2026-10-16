@@ -6,8 +6,8 @@
   "rain": "rain >= 0.01 in between 07:00 and 07:00 next day",
   "unit": "F"
  },
- "forecastDays": 3,
- "observedDays": 4,
+ "forecastDays": 4,
+ "observedDays": 5,
  "recent": [
   {
    "date": "2026-10-14",
@@ -26,40 +26,58 @@
     "lo": 73,
     "rainIn": 0.0
    }
+  },
+  {
+   "date": "2026-10-15",
+   "google": {
+    "hi": 70.1,
+    "lo": 61.7,
+    "popDay": 15
+   },
+   "nws": {
+    "hi": 69,
+    "lo": 61,
+    "popDay": 13
+   },
+   "obs": {
+    "hi": 73.6,
+    "lo": 63.1,
+    "rainIn": 0.0
+   }
   }
  ],
  "sources": {
   "google": {
    "byLead": [
     {
-     "biasHigh": -2.45,
-     "biasLow": -9.5,
-     "brier": 0.005,
+     "biasHigh": -2.13,
+     "biasLow": -6.57,
+     "brier": 0.024,
      "lead": 0,
-     "maeHigh": 2.45,
-     "maeLow": 9.5,
-     "n": 2,
+     "maeHigh": 2.13,
+     "maeLow": 6.57,
+     "n": 3,
      "rainHit": 1.0
     },
     {
      "biasHigh": -3.5,
-     "biasLow": -11.5,
-     "brier": 0.0,
+     "biasLow": -6.45,
+     "brier": 0.011,
      "lead": 1,
      "maeHigh": 3.5,
-     "maeLow": 11.5,
-     "n": 1,
+     "maeLow": 6.45,
+     "n": 2,
      "rainHit": 1.0
     },
     {
-     "biasHigh": null,
-     "biasLow": null,
-     "brier": null,
+     "biasHigh": -3.8,
+     "biasLow": -1.1,
+     "brier": 0.022,
      "lead": 2,
-     "maeHigh": null,
-     "maeLow": null,
-     "n": 0,
-     "rainHit": null
+     "maeHigh": 3.8,
+     "maeLow": 1.1,
+     "n": 1,
+     "rainHit": 1.0
     },
     {
      "biasHigh": null,
@@ -106,34 +124,34 @@
   "nws": {
    "byLead": [
     {
-     "biasHigh": -1.45,
-     "biasLow": -4.0,
-     "brier": 0.0,
+     "biasHigh": -1.5,
+     "biasLow": -3.37,
+     "brier": 0.023,
      "lead": 0,
-     "maeHigh": 1.45,
-     "maeLow": 4.0,
+     "maeHigh": 1.5,
+     "maeLow": 3.37,
+     "n": 3,
+     "rainHit": 1.0
+    },
+    {
+     "biasHigh": -3.1,
+     "biasLow": -4.05,
+     "brier": 0.009,
+     "lead": 1,
+     "maeHigh": 3.1,
+     "maeLow": 4.05,
      "n": 2,
      "rainHit": 1.0
     },
     {
-     "biasHigh": -1.6,
-     "biasLow": -6.0,
-     "brier": 0.0,
-     "lead": 1,
-     "maeHigh": 1.6,
-     "maeLow": 6.0,
+     "biasHigh": 1.4,
+     "biasLow": -1.1,
+     "brier": 0.084,
+     "lead": 2,
+     "maeHigh": 1.4,
+     "maeLow": 1.1,
      "n": 1,
      "rainHit": 1.0
-    },
-    {
-     "biasHigh": null,
-     "biasLow": null,
-     "brier": null,
-     "lead": 2,
-     "maeHigh": null,
-     "maeLow": null,
-     "n": 0,
-     "rainHit": null
     },
     {
      "biasHigh": null,
@@ -178,5 +196,5 @@
    ]
   }
  },
- "updated": "2026-10-15T16:58:22+00:00"
+ "updated": "2026-10-16T16:36:14+00:00"
 }
