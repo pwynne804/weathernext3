@@ -1,0 +1,119 @@
+{
+ "google": {
+  "2026-10-20": {
+   "hi": 70,
+   "lo": 44.9,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-21": {
+   "hi": 66.2,
+   "lo": 41.4,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-22": {
+   "hi": 68.6,
+   "lo": 40.9,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-23": {
+   "hi": 62.9,
+   "lo": 36.2,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-24": {
+   "hi": 63.7,
+   "lo": 35.6,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-25": {
+   "hi": 66.8,
+   "lo": 36.9,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-26": {
+   "hi": 71,
+   "lo": 38.1,
+   "popDay": 0,
+   "popNight": 5,
+   "qpfIn": 0,
+   "text": "Sunny"
+  }
+ },
+ "issued": "2026-10-20T17:00:12+00:00",
+ "issuedLocalDate": "2026-10-20",
+ "lat": 37.513,
+ "lon": -77.566,
+ "nws": {
+  "2026-10-20": {
+   "hi": 71,
+   "lo": 47,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-21": {
+   "hi": 67,
+   "lo": 44,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-22": {
+   "hi": 70,
+   "lo": 48,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-23": {
+   "hi": 63,
+   "lo": 42,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-24": {
+   "hi": 62,
+   "lo": 42,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-25": {
+   "hi": 67,
+   "lo": 44,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-26": {
+   "hi": 72,
+   "lo": 50,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  }
+ },
+ "nwsMeta": {
+  "grid": "AKQ/41,75",
+  "updated": "2026-10-20T10:50:45+00:00"
+ }
+}
