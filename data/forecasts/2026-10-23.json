@@ -1,0 +1,119 @@
+{
+ "google": {
+  "2026-10-23": {
+   "hi": 65.9,
+   "lo": 41,
+   "popDay": 10,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-24": {
+   "hi": 62.5,
+   "lo": 40.4,
+   "popDay": 10,
+   "popNight": 5,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-25": {
+   "hi": 66.4,
+   "lo": 38.1,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-26": {
+   "hi": 69.7,
+   "lo": 37.5,
+   "popDay": 10,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-27": {
+   "hi": 72.8,
+   "lo": 42,
+   "popDay": 0,
+   "popNight": 5,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-10-28": {
+   "hi": 68.3,
+   "lo": 47.8,
+   "popDay": 10,
+   "popNight": 10,
+   "qpfIn": 0,
+   "text": "Mostly cloudy"
+  },
+  "2026-10-29": {
+   "hi": 70.9,
+   "lo": 50.6,
+   "popDay": 10,
+   "popNight": 5,
+   "qpfIn": 0,
+   "text": "Partly sunny"
+  }
+ },
+ "issued": "2026-10-23T17:04:05+00:00",
+ "issuedLocalDate": "2026-10-23",
+ "lat": 37.513,
+ "lon": -77.566,
+ "nws": {
+  "2026-10-23": {
+   "hi": 65,
+   "lo": 40,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-24": {
+   "hi": 64,
+   "lo": 40,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-25": {
+   "hi": 66,
+   "lo": 38,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-26": {
+   "hi": 69,
+   "lo": 44,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-27": {
+   "hi": 70,
+   "lo": 46,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-10-28": {
+   "hi": 65,
+   "lo": 47,
+   "popDay": 1,
+   "popNight": 2,
+   "text": "Mostly Sunny"
+  },
+  "2026-10-29": {
+   "hi": 68,
+   "lo": 48,
+   "popDay": 3,
+   "popNight": 5,
+   "text": "Mostly Sunny"
+  }
+ },
+ "nwsMeta": {
+  "grid": "AKQ/41,75",
+  "updated": "2026-10-23T10:52:45+00:00"
+ }
+}
