@@ -6,8 +6,8 @@
   "rain": "rain >= 0.01 in between 07:00 and 07:00 next day",
   "unit": "F"
  },
- "forecastDays": 15,
- "observedDays": 16,
+ "forecastDays": 16,
+ "observedDays": 17,
  "recent": [
   {
    "date": "2026-10-14",
@@ -242,79 +242,97 @@
     "lo": 47.8,
     "rainIn": 0.0
    }
+  },
+  {
+   "date": "2026-10-27",
+   "google": {
+    "hi": 72,
+    "lo": 44.9,
+    "popDay": 0
+   },
+   "nws": {
+    "hi": 72,
+    "lo": 47,
+    "popDay": 0
+   },
+   "obs": {
+    "hi": 75.2,
+    "lo": 50.9,
+    "rainIn": 0.0
+   }
   }
  ],
  "sources": {
   "google": {
    "byLead": [
     {
-     "biasHigh": -1.74,
-     "biasLow": -3.54,
-     "brier": 0.065,
+     "biasHigh": -1.71,
+     "biasLow": -3.46,
+     "brier": 0.06,
      "lead": 0,
-     "maeHigh": 1.74,
-     "maeLow": 3.56,
+     "maeHigh": 1.71,
+     "maeLow": 3.49,
+     "n": 15,
+     "rainHit": 0.93
+    },
+    {
+     "biasHigh": -2.39,
+     "biasLow": -4.15,
+     "brier": 0.089,
+     "lead": 1,
+     "maeHigh": 2.39,
+     "maeLow": 4.15,
      "n": 14,
      "rainHit": 0.93
     },
     {
-     "biasHigh": -2.33,
-     "biasLow": -4.01,
-     "brier": 0.096,
-     "lead": 1,
-     "maeHigh": 2.33,
-     "maeLow": 4.01,
+     "biasHigh": -2.2,
+     "biasLow": -3.67,
+     "brier": 0.088,
+     "lead": 2,
+     "maeHigh": 2.2,
+     "maeLow": 4.13,
      "n": 13,
+     "rainHit": 0.85
+    },
+    {
+     "biasHigh": -2.33,
+     "biasLow": -3.89,
+     "brier": 0.099,
+     "lead": 3,
+     "maeHigh": 2.55,
+     "maeLow": 4.93,
+     "n": 12,
      "rainHit": 0.92
     },
     {
-     "biasHigh": -2.12,
-     "biasLow": -3.32,
-     "brier": 0.095,
-     "lead": 2,
-     "maeHigh": 2.12,
-     "maeLow": 3.82,
-     "n": 12,
-     "rainHit": 0.83
-    },
-    {
-     "biasHigh": -2.22,
-     "biasLow": -3.46,
-     "brier": 0.108,
-     "lead": 3,
-     "maeHigh": 2.45,
-     "maeLow": 4.59,
+     "biasHigh": -2.42,
+     "biasLow": -4.25,
+     "brier": 0.028,
+     "lead": 4,
+     "maeHigh": 3.15,
+     "maeLow": 5.97,
      "n": 11,
      "rainHit": 0.91
     },
     {
-     "biasHigh": -2.42,
-     "biasLow": -3.78,
-     "brier": 0.031,
-     "lead": 4,
-     "maeHigh": 3.22,
-     "maeLow": 5.68,
-     "n": 10,
-     "rainHit": 0.9
-    },
-    {
      "biasHigh": -3.36,
-     "biasLow": -3.54,
-     "brier": 0.004,
+     "biasLow": -4.09,
+     "brier": 0.003,
      "lead": 5,
-     "maeHigh": 3.76,
-     "maeLow": 4.68,
-     "n": 9,
+     "maeHigh": 3.72,
+     "maeLow": 5.11,
+     "n": 10,
      "rainHit": 1.0
     },
     {
-     "biasHigh": -3.21,
-     "biasLow": -2.41,
-     "brier": 0.003,
+     "biasHigh": -3.16,
+     "biasLow": -3.3,
+     "brier": 0.004,
      "lead": 6,
-     "maeHigh": 3.56,
-     "maeLow": 4.36,
-     "n": 8,
+     "maeHigh": 3.47,
+     "maeLow": 5.03,
+     "n": 9,
      "rainHit": 1.0
     }
    ]
@@ -322,77 +340,77 @@
   "nws": {
    "byLead": [
     {
-     "biasHigh": -1.33,
-     "biasLow": -2.59,
-     "brier": 0.075,
+     "biasHigh": -1.45,
+     "biasLow": -2.61,
+     "brier": 0.07,
      "lead": 0,
-     "maeHigh": 1.44,
+     "maeHigh": 1.56,
      "maeLow": 2.91,
+     "n": 15,
+     "rainHit": 0.93
+    },
+    {
+     "biasHigh": -1.61,
+     "biasLow": -2.08,
+     "brier": 0.07,
+     "lead": 1,
+     "maeHigh": 1.86,
+     "maeLow": 2.61,
      "n": 14,
      "rainHit": 0.93
     },
     {
-     "biasHigh": -1.48,
-     "biasLow": -1.94,
-     "brier": 0.075,
-     "lead": 1,
-     "maeHigh": 1.76,
-     "maeLow": 2.51,
+     "biasHigh": -1.45,
+     "biasLow": -1.01,
+     "brier": 0.08,
+     "lead": 2,
+     "maeHigh": 2.68,
+     "maeLow": 2.05,
      "n": 13,
      "rainHit": 0.92
     },
     {
-     "biasHigh": -1.31,
-     "biasLow": -0.77,
-     "brier": 0.087,
-     "lead": 2,
-     "maeHigh": 2.64,
-     "maeLow": 1.9,
+     "biasHigh": -2.78,
+     "biasLow": 0.08,
+     "brier": 0.07,
+     "lead": 3,
+     "maeHigh": 3.08,
+     "maeLow": 2.95,
      "n": 12,
      "rainHit": 0.92
     },
     {
-     "biasHigh": -2.55,
-     "biasLow": 0.63,
-     "brier": 0.077,
-     "lead": 3,
-     "maeHigh": 2.88,
-     "maeLow": 2.68,
+     "biasHigh": -2.89,
+     "biasLow": 0.79,
+     "brier": 0.092,
+     "lead": 4,
+     "maeHigh": 3.71,
+     "maeLow": 2.34,
      "n": 11,
      "rainHit": 0.91
     },
     {
-     "biasHigh": -2.66,
-     "biasLow": 1.36,
-     "brier": 0.101,
-     "lead": 4,
-     "maeHigh": 3.56,
-     "maeLow": 2.08,
-     "n": 10,
-     "rainHit": 0.9
-    },
-    {
-     "biasHigh": -2.6,
-     "biasLow": 2.91,
-     "brier": 0.01,
+     "biasHigh": -2.86,
+     "biasLow": 2.53,
+     "brier": 0.009,
      "lead": 5,
-     "maeHigh": 3.04,
-     "maeLow": 3.31,
-     "n": 9,
+     "maeHigh": 3.26,
+     "maeLow": 3.07,
+     "n": 10,
      "rainHit": 1.0
     },
     {
-     "biasHigh": -1.51,
-     "biasLow": 4.01,
+     "biasHigh": -1.92,
+     "biasLow": 3.47,
      "brier": 0.008,
      "lead": 6,
-     "maeHigh": 2.21,
-     "maeLow": 4.01,
-     "n": 8,
+     "maeHigh": 2.54,
+     "maeLow": 3.67,
+     "n": 9,
      "rainHit": 1.0
     }
    ]
   }
  },
- "updated": "2026-10-27T17:58:22+00:00"
+ "updated": "2026-10-28T18:20:21+00:00"
 }
