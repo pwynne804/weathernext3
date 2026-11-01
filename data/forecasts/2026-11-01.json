@@ -1,0 +1,119 @@
+{
+ "google": {
+  "2026-11-01": {
+   "hi": 66,
+   "lo": 42.3,
+   "popDay": 10,
+   "popNight": 10,
+   "qpfIn": 0,
+   "text": "Partly sunny"
+  },
+  "2026-11-02": {
+   "hi": 62,
+   "lo": 43,
+   "popDay": 10,
+   "popNight": 10,
+   "qpfIn": 0.0004,
+   "text": "Cloudy"
+  },
+  "2026-11-03": {
+   "hi": 72.2,
+   "lo": 45.8,
+   "popDay": 10,
+   "popNight": 10,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-11-04": {
+   "hi": 73.2,
+   "lo": 51.2,
+   "popDay": 10,
+   "popNight": 35,
+   "qpfIn": 0.0185,
+   "text": "Partly sunny"
+  },
+  "2026-11-05": {
+   "hi": 72.7,
+   "lo": 56.9,
+   "popDay": 70,
+   "popNight": 20,
+   "qpfIn": 0.26689999999999997,
+   "text": "Mostly cloudy"
+  },
+  "2026-11-06": {
+   "hi": 66.8,
+   "lo": 46.8,
+   "popDay": 30,
+   "popNight": 15,
+   "qpfIn": 0.0567,
+   "text": "Light rain"
+  },
+  "2026-11-07": {
+   "hi": 59.5,
+   "lo": 39.6,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  }
+ },
+ "issued": "2026-11-01T17:55:37+00:00",
+ "issuedLocalDate": "2026-11-01",
+ "lat": 37.513,
+ "lon": -77.566,
+ "nws": {
+  "2026-11-01": {
+   "hi": 66,
+   "lo": 44,
+   "popDay": 2,
+   "popNight": 2,
+   "text": "Mostly Sunny"
+  },
+  "2026-11-02": {
+   "hi": 65,
+   "lo": 45,
+   "popDay": 5,
+   "popNight": 0,
+   "text": "Partly Sunny"
+  },
+  "2026-11-03": {
+   "hi": 73,
+   "lo": 51,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-11-04": {
+   "hi": 77,
+   "lo": 60,
+   "popDay": 3,
+   "popNight": 18,
+   "text": "Mostly Sunny"
+  },
+  "2026-11-05": {
+   "hi": 75,
+   "lo": 61,
+   "popDay": 47,
+   "popNight": 50,
+   "text": "Chance Rain Showers"
+  },
+  "2026-11-06": {
+   "hi": 73,
+   "lo": 55,
+   "popDay": 48,
+   "popNight": 45,
+   "text": "Chance Showers And Thunderstorms"
+  },
+  "2026-11-07": {
+   "hi": 68,
+   "lo": 48,
+   "popDay": 36,
+   "popNight": 10,
+   "text": "Chance Rain Showers"
+  }
+ },
+ "nwsMeta": {
+  "grid": "AKQ/41,75",
+  "updated": "2026-11-01T17:42:24+00:00"
+ }
+}
