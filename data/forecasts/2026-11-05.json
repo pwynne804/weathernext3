@@ -1,0 +1,119 @@
+{
+ "google": {
+  "2026-11-05": {
+   "hi": 76.4,
+   "lo": 64.4,
+   "popDay": 18,
+   "popNight": 85,
+   "qpfIn": 0.7358,
+   "text": "Mostly cloudy"
+  },
+  "2026-11-06": {
+   "hi": 66.3,
+   "lo": 51.4,
+   "popDay": 75,
+   "popNight": 5,
+   "qpfIn": 0.48310000000000003,
+   "text": "Rain"
+  },
+  "2026-11-07": {
+   "hi": 60.9,
+   "lo": 39.1,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-11-08": {
+   "hi": 62.6,
+   "lo": 39.1,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-11-09": {
+   "hi": 66.4,
+   "lo": 38.3,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  },
+  "2026-11-10": {
+   "hi": 70.3,
+   "lo": 39.2,
+   "popDay": 5,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Mostly sunny"
+  },
+  "2026-11-11": {
+   "hi": 68.2,
+   "lo": 42.9,
+   "popDay": 0,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Sunny"
+  }
+ },
+ "issued": "2026-11-05T19:54:53+00:00",
+ "issuedLocalDate": "2026-11-05",
+ "lat": 37.513,
+ "lon": -77.566,
+ "nws": {
+  "2026-11-05": {
+   "hi": 75,
+   "lo": 65,
+   "popDay": 20,
+   "popNight": 82,
+   "text": "Slight Chance Rain Showers"
+  },
+  "2026-11-06": {
+   "hi": 70,
+   "lo": 50,
+   "popDay": 82,
+   "popNight": 44,
+   "text": "Showers And Thunderstorms"
+  },
+  "2026-11-07": {
+   "hi": 61,
+   "lo": 40,
+   "popDay": 3,
+   "popNight": 1,
+   "text": "Mostly Sunny"
+  },
+  "2026-11-08": {
+   "hi": 64,
+   "lo": 40,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-11-09": {
+   "hi": 65,
+   "lo": 41,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-11-10": {
+   "hi": 69,
+   "lo": 41,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-11-11": {
+   "hi": 65,
+   "lo": 39,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  }
+ },
+ "nwsMeta": {
+  "grid": "AKQ/41,75",
+  "updated": "2026-11-05T18:35:05+00:00"
+ }
+}
