@@ -1,0 +1,119 @@
+{
+ "google": {
+  "2026-11-19": {
+   "hi": 68.4,
+   "lo": 34.2,
+   "popDay": 10,
+   "popNight": 10,
+   "qpfIn": 0,
+   "text": "Cloudy"
+  },
+  "2026-11-20": {
+   "hi": 66,
+   "lo": 34.4,
+   "popDay": 10,
+   "popNight": 10,
+   "qpfIn": 0,
+   "text": "Cloudy"
+  },
+  "2026-11-21": {
+   "hi": 64.9,
+   "lo": 37.1,
+   "popDay": 10,
+   "popNight": 45,
+   "qpfIn": 0.0709,
+   "text": "Cloudy"
+  },
+  "2026-11-22": {
+   "hi": 61.6,
+   "lo": 54.4,
+   "popDay": 55,
+   "popNight": 55,
+   "qpfIn": 0.4,
+   "text": "Light rain"
+  },
+  "2026-11-23": {
+   "hi": 69.4,
+   "lo": 40.6,
+   "popDay": 10,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Partly sunny"
+  },
+  "2026-11-24": {
+   "hi": 50.6,
+   "lo": 34.8,
+   "popDay": 0,
+   "popNight": 10,
+   "qpfIn": 0,
+   "text": "Mostly sunny"
+  },
+  "2026-11-25": {
+   "hi": 43.2,
+   "lo": 34.9,
+   "popDay": 75,
+   "popNight": 85,
+   "qpfIn": 2.4169,
+   "text": "Heavy rain"
+  }
+ },
+ "issued": "2026-11-19T20:31:43+00:00",
+ "issuedLocalDate": "2026-11-19",
+ "lat": 37.513,
+ "lon": -77.566,
+ "nws": {
+  "2026-11-19": {
+   "hi": 67,
+   "lo": 35,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Mostly Sunny"
+  },
+  "2026-11-20": {
+   "hi": 67,
+   "lo": 39,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-11-21": {
+   "hi": 65,
+   "lo": 49,
+   "popDay": 1,
+   "popNight": 41,
+   "text": "Partly Sunny"
+  },
+  "2026-11-22": {
+   "hi": 63,
+   "lo": 51,
+   "popDay": 67,
+   "popNight": 65,
+   "text": "Rain Showers Likely"
+  },
+  "2026-11-23": {
+   "hi": 67,
+   "lo": 39,
+   "popDay": 16,
+   "popNight": 1,
+   "text": "Slight Chance Rain Showers then Mostly Sunny"
+  },
+  "2026-11-24": {
+   "hi": 52,
+   "lo": 34,
+   "popDay": 2,
+   "popNight": 13,
+   "text": "Sunny"
+  },
+  "2026-11-25": {
+   "hi": 52,
+   "lo": 40,
+   "popDay": 41,
+   "popNight": 58,
+   "text": "Chance Rain Showers"
+  }
+ },
+ "nwsMeta": {
+  "grid": "AKQ/41,75",
+  "updated": "2026-11-19T19:54:19+00:00"
+ }
+}
