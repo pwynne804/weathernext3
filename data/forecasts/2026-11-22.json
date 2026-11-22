@@ -1,0 +1,119 @@
+{
+ "google": {
+  "2026-11-22": {
+   "hi": 63.5,
+   "lo": 55.1,
+   "popDay": 64,
+   "popNight": 35,
+   "qpfIn": 0.1387,
+   "text": "Cloudy"
+  },
+  "2026-11-23": {
+   "hi": 70,
+   "lo": 42.4,
+   "popDay": 10,
+   "popNight": 35,
+   "qpfIn": 0.0173,
+   "text": "Cloudy"
+  },
+  "2026-11-24": {
+   "hi": 51.2,
+   "lo": 34.9,
+   "popDay": 0,
+   "popNight": 10,
+   "qpfIn": 0,
+   "text": "Mostly sunny"
+  },
+  "2026-11-25": {
+   "hi": 52.6,
+   "lo": 37.1,
+   "popDay": 40,
+   "popNight": 85,
+   "qpfIn": 2.3949000000000003,
+   "text": "Rain"
+  },
+  "2026-11-26": {
+   "hi": 58,
+   "lo": 44.5,
+   "popDay": 85,
+   "popNight": 30,
+   "qpfIn": 1.9559,
+   "text": "Heavy rain"
+  },
+  "2026-11-27": {
+   "hi": 54.3,
+   "lo": 37,
+   "popDay": 10,
+   "popNight": 10,
+   "qpfIn": 0,
+   "text": "Partly sunny"
+  },
+  "2026-11-28": {
+   "hi": 56,
+   "lo": 36.8,
+   "popDay": 10,
+   "popNight": 0,
+   "qpfIn": 0,
+   "text": "Partly sunny"
+  }
+ },
+ "issued": "2026-11-22T19:33:31+00:00",
+ "issuedLocalDate": "2026-11-22",
+ "lat": 37.513,
+ "lon": -77.566,
+ "nws": {
+  "2026-11-22": {
+   "hi": 67,
+   "lo": 53,
+   "popDay": 66,
+   "popNight": 65,
+   "text": "Rain Showers Likely"
+  },
+  "2026-11-23": {
+   "hi": 72,
+   "lo": 39,
+   "popDay": 30,
+   "popNight": 30,
+   "text": "Mostly Sunny then Chance Rain Showers"
+  },
+  "2026-11-24": {
+   "hi": 54,
+   "lo": 33,
+   "popDay": 0,
+   "popNight": 0,
+   "text": "Sunny"
+  },
+  "2026-11-25": {
+   "hi": 54,
+   "lo": 46,
+   "popDay": 13,
+   "popNight": 85,
+   "text": "Partly Sunny"
+  },
+  "2026-11-26": {
+   "hi": 58,
+   "lo": 41,
+   "popDay": 90,
+   "popNight": 63,
+   "text": "Rain Showers"
+  },
+  "2026-11-27": {
+   "hi": 59,
+   "lo": 35,
+   "popDay": 21,
+   "popNight": 3,
+   "text": "Slight Chance Rain Showers then Mostly Sunny"
+  },
+  "2026-11-28": {
+   "hi": 58,
+   "lo": 37,
+   "popDay": 7,
+   "popNight": 15,
+   "text": "Mostly Sunny"
+  }
+ },
+ "nwsMeta": {
+  "grid": "AKQ/41,75",
+  "updated": "2026-11-22T19:12:03+00:00"
+ }
+}
